@@ -44,7 +44,7 @@ public class Base {
 				driver.quit();
 			}
 		}else{
-			fileName = "local-app.properties";
+			fileName = "local-app.properties"; // if env not provided then this file will be properties file
 		}
 
 		try {
@@ -109,13 +109,13 @@ public class Base {
 		try{
 			driver.get(BASEURI);
 		}catch(TimeoutException e){
-			log.info("Website getting time out, please check manually page load time!");
+			log.error("Website getting time out, please check manually page load time!");
 		}
 	}
 	
 	@AfterClass(alwaysRun = true)
 	public void postTest() throws Throwable {
-		// driver.quit();
+		driver.quit();
 		cu.sleep3Seconds(driver);
 		Reporter.log("========Browser Session End========", true);
 	}

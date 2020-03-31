@@ -8,7 +8,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -33,10 +32,6 @@ public class CommonUtil extends Base {
 
 	public void waitvisible(WebElement ele) {
 		wait.until(ExpectedConditions.visibilityOf(ele));
-	}
-
-	public void implicitWait(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(CommonUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
 	}
 
 	public void sleep3Seconds(WebDriver driver) {
@@ -78,7 +73,7 @@ public class CommonUtil extends Base {
 			if(os.equals("Linux") || os.equals("Mac")) {
 				FileUtils.copyFile(scrFile, new File(currentDir+"/screenshots/" +dateFormat.format(date)+".png"));
 			}else {
-				FileUtils.copyFile(scrFile, new File(currentDir+"/screenshots/" +dateFormat.format(date)+".png"));
+				FileUtils.copyFile(scrFile, new File(currentDir+"\\screenshots\\" +dateFormat.format(date)+".png"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -97,7 +92,7 @@ public class CommonUtil extends Base {
 					uc.connect();
 					int res = uc.getResponseCode();
 					if(res == resCode) {
-						// log.info("Active Url : "+url);
+						log.info("Active Url : "+url);
 						linkActive = true;
 					}else {
 						linkActive = false;
